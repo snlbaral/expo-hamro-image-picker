@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "outDir": "dist",
+    "allowJs": true,
+    "jsx": "react-native",
+    "lib": ["ES6", "DOM"],
+    "checkJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "baseUrl": "."
+  },
+  "include": ["index.ts", "src"]
+}
