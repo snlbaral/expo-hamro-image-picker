@@ -5,40 +5,39 @@ import { ImageEditor } from "expo-image-editor";
 import Modal from "react-native-modalbox";
 import { HamroImagePickerProps } from "./interfaces";
 
-
 const HamroImagePicker = ({
-    handlePickerClose,
-    handleSubmit,
-    enablePicker,
-    enableAlbums,
-    ImageComponent,
-    enableCameraCapture,
-    enableMultiSelect,
-    multiSelectOptions,
-    headerText,
-    backButtonClose,
-    coverScreen,
-    swipeToClose,
-    enableEditor,
-    editorOptions,
-    multipleSelectEnabled
+  handlePickerClose,
+  handleSubmit,
+  enablePicker,
+  enableAlbums,
+  ImageComponent,
+  enableCameraCapture,
+  enableMultiSelect,
+  multiSelectOptions,
+  headerText,
+  backButtonClose,
+  coverScreen,
+  swipeToClose,
+  enableEditor,
+  editorOptions,
+  multipleSelectEnabled,
 }: HamroImagePickerProps) => {
-    const [selectedImageData, setSelectedImageData] = useState<any>({});
-    const modalRef = useRef<any>();
+  const [selectedImageData, setSelectedImageData] = useState<any>({});
+  const modalRef = useRef<any>();
 
-    const submitSingleData = (data:any) => {
-        if (enableEditor) {
-            setSelectedImageData(data);
-        } else {
-            handleSubmit({ hasMultiple: false, data });
-            modalRef.current.close();
-        }
-    };
+  const submitSingleData = (data: any) => {
+    if (enableEditor) {
+      setSelectedImageData(data);
+    } else {
+      handleSubmit({ hasMultiple: false, data });
+      modalRef.current.close();
+    }
+  };
 
-    const submitMultipleData = (data:any) => {
-        handleSubmit({ hasMultiple: true, data });
-        modalRef.current.close();
-    };
+  const submitMultipleData = (data: any) => {
+    handleSubmit({ hasMultiple: true, data });
+    modalRef.current.close();
+  };
 
   return (
     <Modal
@@ -50,7 +49,7 @@ const HamroImagePicker = ({
       swipeToClose={swipeToClose}
       ref={modalRef}
     >
-        {enablePicker ? (
+      {enablePicker ? (
         <View style={{ flex: 1, backgroundColor: "#000000" }}>
           <View style={{ flex: 1, justifyContent: "center" }}>
             <FileCollector
@@ -91,41 +90,41 @@ const HamroImagePicker = ({
         </View>
       ) : null}
     </Modal>
-  )
-}
+  );
+};
 
-export default HamroImagePicker
+export default HamroImagePicker;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});
 
 HamroImagePicker.defaultProps = {
-    handlePickerClose : () => {},
-    handleSubmit : () => {},
-    enableAlbums : true,
-    ImageComponent : ImageBackground,
-    enableCameraCapture : true,
-    enableMultiSelect : false,
-    multiSelectOptions : {
-        minimumImageCount: 1,
-        maximumImageCount: -1,
+  handlePickerClose: () => {},
+  handleSubmit: () => {},
+  enableAlbums: true,
+  ImageComponent: ImageBackground,
+  enableCameraCapture: true,
+  enableMultiSelect: false,
+  multiSelectOptions: {
+    minimumImageCount: 1,
+    maximumImageCount: -1,
+  },
+  headerText: "New Post",
+  backButtonClose: true,
+  coverScreen: true,
+  swipeToClose: true,
+  enableEditor: true,
+  editorOptions: {
+    asView: false,
+    mode: "full",
+    fixedCropAspectRatio: 16 / 9,
+    lockAspectRatio: false,
+    minimumCropDimensions: {
+      width: 100,
+      height: 100,
     },
-    headerText : "New Post",
-    backButtonClose : true,
-    coverScreen : true,
-    swipeToClose : true,
-    enableEditor : true,
-    editorOptions : {
-        asView: false,
-        mode: "full",
-        fixedCropAspectRatio: 16 / 9,
-        lockAspectRatio: false,
-        minimumCropDimensions: {
-            width: 100,
-            height: 100,
-        },
-        throttleBlur: false,
-        allowedTransformOperations: ["crop", "rotate"],
-        allowedAdjustmentOperations: ["blur"],
-    },
-    multipleSelectEnabled : false,
-}
+    throttleBlur: false,
+    allowedTransformOperations: ["crop", "rotate"],
+    allowedAdjustmentOperations: ["blur"],
+  },
+  multipleSelectEnabled: false,
+};

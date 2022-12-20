@@ -7,13 +7,13 @@ import {
   View,
 } from "react-native";
 import React from "react";
-import { HeaderProps } from './interfaces'
+import { HeaderProps } from "./interfaces";
 
 const Header = ({
-    modalRef,
-    headerText,
-    enableDone,
-    multiSelectSubmit
+  modalRef,
+  headerText,
+  enableDone,
+  multiSelectSubmit,
 }: HeaderProps) => {
   return (
     <View
@@ -39,7 +39,7 @@ const Header = ({
               height: 20,
               tintColor: "#FFFFFF",
             }}
-            source={require("../../assets/close.png")}
+            source={require("./assets/close.png")}
           />
         </TouchableOpacity>
         <Text
@@ -64,15 +64,15 @@ const Header = ({
                 height: 25,
                 tintColor: "#FFFFFF",
               }}
-              source={require("../../assets/forward.png")}
+              source={require("./assets/forward.png")}
             />
           </TouchableOpacity>
         ) : null}
       </View>
     </View>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});

@@ -13,18 +13,16 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import * as MediaLibrary from "expo-media-library";
-import {AssetsOptions, Album, Asset} from 'expo-media-library'
+import { AssetsOptions, Album, Asset } from "expo-media-library";
 import AlbumPicker from "./AlbumPicker";
 import * as imagePicker from "expo-image-picker";
 import Header from "./Header";
-import { FileCollectorProps } from './interfaces'
+import { FileCollectorProps } from "./interfaces";
 
-
-const initGalleryItem: any = { id: null, title: "Gallery" }
-const initResultCount: number = 100
+const initGalleryItem: any = { id: null, title: "Gallery" };
+const initResultCount: number = 100;
 const { height, width }: any = Dimensions.get("screen");
 const imageHeight: number = height / 3;
-
 
 const FileCollector = ({
   submitSingleData,
@@ -38,11 +36,13 @@ const FileCollector = ({
   submitMultipleData,
   multipleSelectEnabled,
 }: FileCollectorProps) => {
-  const [initLoading, setInitLoading] = useState<boolean>(true)
+  const [initLoading, setInitLoading] = useState<boolean>(true);
   const [images, setImages] = useState<Array<Asset>>([]);
-  const [multipleSelected, setMultipleSelected] = useState<boolean>(multipleSelectEnabled);
+  const [multipleSelected, setMultipleSelected] = useState<boolean>(
+    multipleSelectEnabled
+  );
   const [resultCount, setResultCount] = useState<number>(initResultCount);
-  const [skip, setSkip] = useState<number|null>(null);
+  const [skip, setSkip] = useState<number | null>(null);
   const [lastItem, setLastItem] = useState<any>(undefined);
   const [albums, setAlbums] = useState<any>([initGalleryItem]);
   const [selectedAlbum, setSelectedAlbum] = useState<any>(initGalleryItem);
@@ -75,16 +75,16 @@ const FileCollector = ({
     if (initLoading) return;
     if (!hasMoreImages) return;
     fetchImages();
-  }
+  };
 
   const getAlbums = async () => {
     try {
       const albumsData = await MediaLibrary.getAlbumsAsync();
       setAlbums([...albums, ...albumsData]);
-    } catch (error:any) {
+    } catch (error: any) {
       console.log(error.message);
     }
-  }
+  };
 
   const fetchImages = async () => {
     try {
@@ -101,7 +101,9 @@ const FileCollector = ({
       } else {
         setSkip(resultCount + skip);
       }
-      const { assets, ...pageInfo } = await MediaLibrary.getAssetsAsync({...fetchParams});
+      const { assets, ...pageInfo } = await MediaLibrary.getAssetsAsync({
+        ...fetchParams,
+      });
 
       if (assets.length) {
         setImages([...images, ...assets]);
@@ -113,7 +115,7 @@ const FileCollector = ({
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   const handleAlbumClick = (album: Album) => {
     setHasMoreImages(true);
@@ -123,7 +125,7 @@ const FileCollector = ({
     setImages([]);
     setSelectedAlbum(album);
     setSelectedImagesId([]);
-  }
+  };
 
   useEffect(() => {
     if (enableCameraCapture) {
@@ -139,18 +141,18 @@ const FileCollector = ({
         Alert.alert("Error", "Permission denied");
       }
     }
-  },[]);
+  }, []);
 
   const openCamera = async () => {
     const result = await imagePicker.launchCameraAsync({});
     if (!result.canceled) {
       submitSingleData({ id: Math.random(), ...result });
     }
-  }
+  };
 
   const selectedImage = (item: Asset, index: number) => {
     submitSingleData(item);
-  }
+  };
 
   useEffect(() => {
     if (selectedImagesId.length >= multiSelectOptions.minimumImageCount) {
@@ -176,7 +178,7 @@ const FileCollector = ({
       }
       setSelectedImagesId((prev) => [...prev, item.id]);
     }
-  }
+  };
 
   const multiSelectSubmit = () => {
     if (selectedImagesId.length < multiSelectOptions.minimumImageCount) {
@@ -187,7 +189,7 @@ const FileCollector = ({
     }
     const data = images.filter((img) => selectedImagesId.includes(img.id));
     submitMultipleData(data);
-  }
+  };
 
   const renderHeader = () => (
     <View
@@ -220,7 +222,7 @@ const FileCollector = ({
             height: 15,
             tintColor: "#FFFFFF",
           }}
-          source={require("../../assets/down_a.png")}
+          source={require("./assets/down_a.png")}
         />
       </TouchableOpacity>
 
@@ -243,7 +245,7 @@ const FileCollector = ({
             <Image
               resizeMode="contain"
               style={{ width: 22, height: 22, tintColor: "#FFFFFF" }}
-              source={require("../../assets/multi-copy.png")}
+              source={require("./assets/multi-copy.png")}
             />
           </TouchableOpacity>
         ) : null}
@@ -262,7 +264,7 @@ const FileCollector = ({
             <Image
               resizeMode="contain"
               style={{ width: 20, height: 20, tintColor: "#FFFFFF" }}
-              source={require("../../assets/camera-bw.png")}
+              source={require("./assets/camera-bw.png")}
             />
           </TouchableOpacity>
         ) : null}
@@ -329,7 +331,7 @@ const FileCollector = ({
 
                   alignSelf: "center",
                 }}
-                source={require("../../assets/check.png")}
+                source={require("./assets/check.png")}
               />
             ) : (
               <Text
@@ -343,9 +345,6 @@ const FileCollector = ({
       </TouchableOpacity>
     );
   };
-
-
-
 
   return (
     <View style={{ flex: 1 }}>
@@ -393,9 +392,9 @@ const FileCollector = ({
         ListHeaderComponent={renderHeader}
       />
     </View>
-  )
-}
+  );
+};
 
-export default FileCollector
+export default FileCollector;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});

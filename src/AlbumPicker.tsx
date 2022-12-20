@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import React from "react";
 import Modal from "react-native-modalbox";
-import { AlbumPickerProps } from './interfaces'
+import { AlbumPickerProps } from "./interfaces";
 
 const AlbumPicker = ({
   showAlbums,
@@ -61,9 +61,9 @@ const AlbumPicker = ({
         />
       </View>
     </Modal>
-  )
-}
+  );
+};
 
-export default AlbumPicker
+export default AlbumPicker;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});
