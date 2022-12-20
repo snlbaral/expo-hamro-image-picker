@@ -6,7 +6,6 @@ import {
   Image,
   Modal,
   Platform,
-  StyleSheet,
   Text,
   TouchableOpacity,
   View,
@@ -55,10 +54,6 @@ const FileCollector = ({
     if (enableAlbums) {
       getAlbums();
     }
-  }, []);
-
-  useEffect(() => {
-    fetchImages();
     return () => {
       setSkip(null);
       setResultCount(initResultCount);
@@ -69,6 +64,10 @@ const FileCollector = ({
       setImages([]);
       setMultipleSelected(false);
     };
+  }, []);
+
+  useEffect(() => {
+    fetchImages();
   }, [selectedAlbum]);
 
   const NextPageImages = () => {
@@ -127,26 +126,10 @@ const FileCollector = ({
     setSelectedImagesId([]);
   };
 
-  useEffect(() => {
-    if (enableCameraCapture) {
-      getCameraPermission();
-    }
-  }, [enableCameraCapture]);
-
-  const getCameraPermission = React.useCallback(async () => {
-    const { granted } = await imagePicker.getCameraPermissionsAsync();
-    if (!granted) {
-      const result = await imagePicker.requestCameraPermissionsAsync();
-      if (!result.granted) {
-        Alert.alert("Error", "Permission denied");
-      }
-    }
-  }, []);
-
   const openCamera = async () => {
     const result = await imagePicker.launchCameraAsync({});
     if (!result.canceled) {
-      submitSingleData({ id: Math.random(), ...result });
+      submitSingleData({ id: Math.random(), ...result.assets[0] });
     }
   };
 
@@ -396,5 +379,3 @@ const FileCollector = ({
 };
 
 export default FileCollector;
-
-const styles = StyleSheet.create({});

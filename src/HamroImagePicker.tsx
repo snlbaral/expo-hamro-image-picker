@@ -1,8 +1,9 @@
-import { ImageBackground, StyleSheet, View } from "react-native";
-import React, { useRef, useState } from "react";
+import { ImageBackground, View, Alert } from "react-native";
+import React, { useEffect, useRef, useState } from "react";
 import FileCollector from "./FileCollector";
 import { ImageEditor } from "expo-image-editor";
 import Modal from "react-native-modalbox";
+import * as imagePicker from "expo-image-picker";
 import { HamroImagePickerProps } from "./interfaces";
 
 const HamroImagePicker = ({
@@ -24,6 +25,33 @@ const HamroImagePicker = ({
 }: HamroImagePickerProps) => {
   const [selectedImageData, setSelectedImageData] = useState<any>({});
   const modalRef = useRef<any>();
+
+  useEffect(() => {
+    if (enableCameraCapture) {
+      getCameraPermission();
+    }
+    getMediaLibraryPermission();
+  }, [enableCameraCapture]);
+
+  const getMediaLibraryPermission = React.useCallback(async () => {
+    const { granted } = await imagePicker.getMediaLibraryPermissionsAsync();
+    if (!granted) {
+      const result = await imagePicker.requestMediaLibraryPermissionsAsync();
+      if (!result.granted) {
+        Alert.alert("Error", "Permission denied");
+      }
+    }
+  }, []);
+
+  const getCameraPermission = React.useCallback(async () => {
+    const { granted } = await imagePicker.getCameraPermissionsAsync();
+    if (!granted) {
+      const result = await imagePicker.requestCameraPermissionsAsync();
+      if (!result.granted) {
+        Alert.alert("Error", "Permission denied");
+      }
+    }
+  }, []);
 
   const submitSingleData = (data: any) => {
     if (enableEditor) {
@@ -94,8 +122,6 @@ const HamroImagePicker = ({
 };
 
 export default HamroImagePicker;
-
-const styles = StyleSheet.create({});
 
 HamroImagePicker.defaultProps = {
   handlePickerClose: () => {},

@@ -20,7 +20,10 @@ export default function Test() {
         return (
             <View style={{ flex: 1, backgroundColor: '#000000' }}>
                 <ExpoHamroImagePicker
-                    handlePickerClose={()=>console.log("picker closed")}
+                    handlePickerClose={()=>{
+                        console.log("picker closed");
+                        setShowPicker(false);
+                    }}
                     enablePicker={showPicker}
                     handleSubmit={handleSubmit}
                     enableEditor={true}

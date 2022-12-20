@@ -1,7 +1,6 @@
 import {
   Dimensions,
   FlatList,
-  StyleSheet,
   Text,
   TouchableOpacity,
   View,
@@ -65,5 +64,3 @@ const AlbumPicker = ({
 };
 
 export default AlbumPicker;
-
-const styles = StyleSheet.create({});

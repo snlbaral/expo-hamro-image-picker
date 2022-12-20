@@ -1,11 +1,4 @@
-import {
-  Dimensions,
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Dimensions, Image, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { HeaderProps } from "./interfaces";
 
@@ -74,5 +67,3 @@ const Header = ({
 };
 
 export default Header;
-
-const styles = StyleSheet.create({});

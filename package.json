@@ -4,12 +4,12 @@
     "type": "git",
     "url": "https://github.com/snlbaral/expo-hamro-image-picker.git"
   },
-  "version": "0.0.1",
+  "version": "0.0.16",
   "description": "A Image Picker/Selector library for react native expo",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "files": [
-    "/dist"
+    "dist"
   ],
   "dependencies": {
     "@expo/vector-icons": "^13.0.0",
@@ -23,7 +23,10 @@
     "expo-media-library": "^15.0.0",
     "react-native-gesture-handler": "^2.8.0",
     "react-native-modalbox": "^2.0.2",
-    "recoil": "^0.7.6"
+    "recoil": "^0.7.6",
+    "modal-enhanced-react-native-web": "^0.2.0",
+    "react-native-web": "^0.13.12",
+    "react-dom": "^16.13.1"
   },
   "devDependencies": {
     "typescript": "^4.9.4",
@@ -34,8 +37,11 @@
     "@types/node": "^18.11.9",
     "@types/react": "^18.0.25"
   },
+  "peerDependencies": {
+    
+  },
   "scripts": {
-    "build": "prettier --write src/ && npm run build:esm && npm run build:cjs && copyfiles src/assets/*.png dist && copyfiles src/assets/*.png dist/cjs",
+    "build": "prettier --write src/ && npm run build:esm && npm run build:cjs && copyfiles -f src/assets/*.png dist/esm/assets && copyfiles -f src/assets/*.png dist/cjs/assets",
     "build:esm": "tsc",
     "build:cjs": "tsc --module CommonJS --outDir dist/cjs"
   },
