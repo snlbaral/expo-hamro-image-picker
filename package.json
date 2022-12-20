@@ -1,8 +1,16 @@
 {
   "name": "expo-hamro-image-picker",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/snlbaral/expo-hamro-image-picker.git"
+  },
+  "version": "0.0.1",
+  "description": "A Image Picker/Selector library for react native expo",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "files": [
+    "/dist"
+  ],
   "dependencies": {
     "expo-image-editor": "^1.7.1",
     "expo-image-picker": "^14.0.2",
@@ -19,10 +27,11 @@
     "@types/react": "^18.0.25"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc"
+    "build": "rm -rf dist/ && prettier --write src/ && npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc",
+    "build:cjs": "tsc --module CommonJS --outDir dist/cjs"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "keywords": ["expo", "react native", "expo image picker", "image picker", "expo image selector", "image picker"],
+  "author": "Sunil Baral",
+  "license": "MIT"
 }
