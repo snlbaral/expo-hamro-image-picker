@@ -2,7 +2,7 @@
 
 Dynamic Image/Files Picker For Expo
 
-| ![1](/examples/screenshots/1.jpeg) | ![2](/examples/screenshots/2.jpeg) | ![3](/examples/screenshots/3.jpeg) | ![3](/examples/screenshots/4.jpeg) |
+| <img src="/examples/screenshots/1.jpeg" width="50%" height="50%"> | <img src="/examples/screenshots/2.jpeg" width="50%" height="50%"> | <img src="/examples/screenshots/3.jpeg" width="50%" height="50%"> | <img src="/examples/screenshots/4.jpeg" width="50%" height="50%"> |
 
 
 ## Installation
@@ -71,10 +71,7 @@ export default function Test() {
 | handlePickerClose|function|No|```()=>{console.log("picker closes")}```|triggers when picker closes|
 | handleSubmit|function|No|```(data)=>{console.log("picked image", data)}```|triggers when everything is done|
 | enableEditor|boolean|No|true|enable editor to allow edit picked image|
-| editorOptions|ImageEditorProps|No|```{
-fixedCropAspectRatio={16 / 9}
-lockAspectRatio={false}
-}```|Image Editor Configurations: https://github.com/thomas-coldwell/expo-image-editor|
+| editorOptions|ImageEditorProps|No|```{fixedCropAspectRatio={16 / 9} lockAspectRatio={false}}```|Image Editor Configurations: https://github.com/thomas-coldwell/expo-image-editor|
 
 ## Contributing
 
