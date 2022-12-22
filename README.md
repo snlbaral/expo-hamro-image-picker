@@ -2,6 +2,25 @@
 
 Dynamic Image/Files Picker For Expo
 
+
+| ![1](/examples/screenshots/1.jpeg) | ![2](/examples/screenshots/2.jpeg) | ![3](/examples/screenshots/3.jpeg) | ![3](/examples/screenshots/4.jpeg) |
+| ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+
+
+## Installation
+
+To get started install the package in your Expo project by running:
+
+```
+yarn add expo-hamro-image-picker
+```
+
+or
+
+```
+npm i expo-hamro-image-picker
+
+
 ## Basic Usage
 
 ```js
@@ -54,7 +73,7 @@ export default function Test() {
 | handlePickerClose|function|No|```()=>{console.log("picker closes")}```|triggers when picker closes|
 | handleSubmit|function|No|```(data)=>{console.log("picked image", data)}```|triggers when everything is done|
 | enableEditor|boolean|No|true|enable editor to allow edit picked image|
-| editorOptions|ImageEditorProps|No||Image Editor Configurations: https://github.com/thomas-coldwell/expo-image-editor|
+| editorOptions|ImageEditorProps|No|```{fixedCropAspectRatio={16 / 9}}```|Image Editor Configurations: https://github.com/thomas-coldwell/expo-image-editor|
 
 ## Contributing
 
